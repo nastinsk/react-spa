@@ -3,17 +3,9 @@ import './App.css';
 import axios from 'axios'
 import Footer from './components/Footer';
 import Header from './components/Header';
-import About from './components/About';
-import Home from './components/Home';
-import ItemsList from './components/ItemsList';
+import Nav from './components/Nav';
 
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 
 class App extends React.Component {
   constructor(props){
@@ -54,36 +46,9 @@ async componentDidMount(){
   render() {
     return (
       <div className="App">
-        <Header greeting = "Welcome" count = {this.state.itemsList.length}/>
-        <Router>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/items">Items</Link>
-              </li>
-            </ul>
-    
-            <Switch>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/items">
-                <ItemsList itemsList={this.state.itemsList} count = {this.state.itemsList.length} onCreated={this.createItemHandler} onDelete={this.deleteItemHandler} />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
-          </nav>
-        </Router>
-  
-      <Footer />
+        <Header greeting = "Welcome" />
+        <Nav itemsList = {this.state.itemsList} count = {this.state.itemsList.length} onCreated={this.createItemHandler} onDelete={this.deleteItemHandler}/>
+        <Footer />
       </div>
     )
   }
